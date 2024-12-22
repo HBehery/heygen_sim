@@ -1,14 +1,14 @@
 from flask import Flask, jsonify, request
 import time
 import threading
+import random
 
 app = Flask(__name__)
 
-global status
-global delay
+global status, delay
 
 status = "pending"
-delay = 10 
+delay = random.randint(1, 20) 
 
 def simulate_job():
     """
@@ -17,7 +17,7 @@ def simulate_job():
     global status
 
     time.sleep(int(delay))
-    status = "completed"
+    status = "completed" if random.randint(0, 1) == 1 else "error"
 
 @app.route('/status', methods=['GET'])
 def get_status():
@@ -35,24 +35,12 @@ def reset_status():
     Returns:
         JSON: The new status.
     """
-    global status
+    global status, delay
     
     status = "pending"
+    delay = random.randint(1, 20) 
     threading.Thread(target=simulate_job).start()
     return jsonify({"result": status})
-
-@app.route('/set_delay', methods=['POST'])
-def set_delay():
-    """
-    Endpoint to set the delay for the job simulation.
-    Returns:
-        JSON: A message indicating the new delay.
-    """
-    global delay
-    
-    data = request.get_json()
-    delay = int(data.get("delay", 10))
-    return jsonify({"result": "delay set to " + str(delay)})
 
 if __name__ == '__main__':
     threading.Thread(target=simulate_job).start()

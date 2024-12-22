@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { fetchStatusWithBackoff, resetStatus, setDelay } from "./client";
+import { fetchStatusWithBackoff, resetStatus } from "./client";
 
 function App() {
   const [status, setStatus] = useState("pending");
@@ -33,18 +33,6 @@ function App() {
     setStatus(result);
   };
 
-  const handleDelayChange = (event) => {
-    setDelayValue(event.target.value);
-  };
-
-  const handleDelayConfirm = async () => {
-    setError(null);
-    const result = await setDelay(delay);
-    if (result === "error") {
-      setError("Failed to set delay");
-    }
-  };
-
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -63,27 +51,7 @@ function App() {
       <button className="button" onClick={handleReset}>
         Reset Status
       </button>
-      <div className="slider-container">
-        <label className="slider-label">
-          Set Delay:
-          <input
-            className="slider"
-            type="range"
-            min="1"
-            max="60"
-            value={delay}
-            onChange={handleDelayChange}
-          />
-          {delay} seconds
-        </label>
-        <button
-          className="button"
-          onClick={handleDelayConfirm}
-          disabled={isFetching}
-        >
-          Confirm Delay
-        </button>
-      </div>
+
       <button className="button" onClick={toggleDarkMode}>
         Toggle Dark Mode
       </button>
