@@ -1,13 +1,152 @@
+/* Import the custom font */
+@font-face {
+  font-family: "objectsans";
+  src: url("../public/fonts/ObjectSansRegular.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "objectsans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  transition: background-color 0.1s ease-out, color 0.1s ease-out;
+}
+
 .App {
   text-align: center;
   display: flex;
-  height: 100vh;
-  flex: column;
-  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .title {
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  transition: color 0.1s ease-out;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: "objectsans", sans-serif;
+  border-radius: 5px;
+  transition: background-color 0.1s ease-out, color 0.1s ease-out;
+  border-radius: 10rem;
+}
+
+.button:hover {
+  background-color: #a34cdb;
+}
+
+.button:active {
+  background-color: #551e8f;
+}
+
+.button.fetching {
+  background-color: #551e8f;
+  cursor: default;
+}
+
+.button.fetching:hover,
+.button.fetching:active {
+  background-color: #551e8f;
+}
+
+.slider-container {
+  margin: 20px 0;
+}
+
+.slider-label {
+  font-size: 1em;
+  color: #333;
+  transition: color 0.1s ease-out;
+}
+
+.slider {
+  width: 100%;
+  margin: 10px 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #a34cdb;
+  outline: none;
+  opacity: 0.7;
+  transition: background-color 0.1s ease-out;
+}
+
+.slider:hover {
+  background: #a34cdb;
+}
+
+.slider:active {
+  background: #551e8f;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #a34cdb;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.1s ease-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #551e8f;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: black;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.1s ease-out;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: #a34cdb;
+}
+
+.slider::-moz-range-thumb:active {
+  background: #551e8f;
+}
+
+.error {
+  color: red;
+  margin-top: 20px;
+  transition: color 0.1s ease-out;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+.dark-mode .title {
+  color: #f4f4f4;
+}
+
+.dark-mode .slider-label {
+  color: #f4f4f4;
+}
+
+.dark-mode .error {
+  color: #ff6b6b;
 }
