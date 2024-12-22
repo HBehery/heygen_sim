@@ -18,22 +18,10 @@ export const fetchStatus = async () => {
 
 /**
  * Fetch the status with exponential backoff and timeout.
- * @param {number} initialDelay - Initial delay in milliseconds.
- * @param {number} maxDelay - Maximum delay in milliseconds.
- * @param {function} updateStatus - Callback to update the status in the frontend.
- * @param {function} onError - Callback to handle errors.
- * @param {number} totalDelay - Total delay in seconds.
- * @returns {Promise<string>} The final status.
+ * @param {string} algorithm - The algorithm to use.
  */
-export const fetchStatusWithBackoff = async (
-  initialDelay = 1000,
-  maxDelay = 16000,
-  updateStatus,
-  onError,
-  totalDelay = 10
-) => {
-  let delay = initialDelay;
-  const timeout = totalDelay * 2 * 1000;
+export const fetchStatusWithBackoff = async (algorithm) => {
+  let delay = 1;
   const startTime = Date.now();
 
   while (true) {
@@ -44,23 +32,16 @@ export const fetchStatusWithBackoff = async (
       }
       const data = await response.json();
 
-      updateStatus(data.result);
+      // updateRequests((prev) => prev + 1);
 
       if (data.result !== "pending") {
         return data.result;
       }
 
-      if (Date.now() - startTime > timeout) {
-        throw new Error("Request timed out");
-      }
-
       await new Promise((resolve) => setTimeout(resolve, delay));
       delay = Math.min(delay * 2, maxDelay);
     } catch (error) {
-      console.error("Error fetching status:", error);
-      updateStatus("error");
-      if (onError) onError(error);
-      return "error";
+      return error;
     }
   }
 };
