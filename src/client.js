@@ -64,3 +64,46 @@ export const fetchStatusWithBackoff = async (
     }
   }
 };
+
+/**
+ * Reset the server status to pending.
+ * @returns {Promise<string>} The new status.
+ */
+export const resetStatus = async () => {
+  try {
+    const response = await fetch("/reset", { method: "POST" });
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error("Error resetting status:", error);
+    return "error";
+  }
+};
+
+/**
+ * Set the delay on the server.
+ * @param {number} delay - The delay in seconds.
+ * @returns {Promise<string>} The result message.
+ */
+export const setDelay = async (delay) => {
+  try {
+    const response = await fetch("/set_delay", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ delay }),
+    });
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error("Error setting delay:", error);
+    return "error";
+  }
+};
