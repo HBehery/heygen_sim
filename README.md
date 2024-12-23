@@ -51,7 +51,7 @@ Additionally, the client library returns extra variables along with the server s
 
 The React implemenation provided in this project allows the user to compare any two approaches/algorithms to translating a video. The "Translate Video" button resets the status of the server through the client library's `resetStatus()` function, and immediately calls the `fetchStatus()` function afterwards for any non-manual algorithm approaches selected from the dropdowns.
 
-Once the selected approach recieves a completion status message, the middle table is updated with the number of requests made and time wasted. The time wasted represents the difference between the frontend receiving the completion status and the server's time of completing the translation.
+Once the selected approach recieves a completion status message, the table is updated with the number of requests made and time wasted. The time wasted represents the difference between the frontend receiving the completion status and the server's time of completing the translation.
 
 ## Usage
 
