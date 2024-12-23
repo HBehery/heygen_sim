@@ -55,17 +55,17 @@ Once the selected approach recieves a completion status message, the table is up
 
 ## Usage
 
-### Importing the Client Library
+### Only Importing the Client Library
 
-1. Clone the git repository into your desired IDE via `git clone {url}` , or simply download the `client.js` file from the repository.
-2. Import the `client.js` file into any JavaScript project in order to utilize the client library functions.
+1. Download the `client.js` file from the repository.
+2. Import the `client.js` file into any JavaScript project in order to utilize the client library functions. Ensure that the `node-fetch` is installed (`npm install node-fetch`)
 
 ### Running the Server and React Implementation
 
-3. Assuming you have cloned the git repository locally, start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
-4. Run `npm install` to acquire all project dependencies.
-5. Run `npm start` to host the implementation locally.
-6. Run `npm test` to initiate the server and client library integration tests.
+1. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
+2. Run `npm install` to acquire all project dependencies.
+3. Run `npm start` to host the implementation locally.
+4. Run `npm test` to initiate the server and client library integration tests.
 
 ## Example
 
