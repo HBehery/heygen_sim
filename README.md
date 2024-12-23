@@ -30,7 +30,8 @@ The server includes the following functions:
   - `pending`: The job is still in progress.
   - `completed`: The job has been successfully completed.
   - `error`: There was an error in completing the job.
-    Once the random delay set by the server is over, it randomly sets the translation status as `completed` or `error`.
+
+  Once the random delay set by the server is over, it randomly sets the translation status as `completed` or `error`.
 
 - `reset_status()`: Endpoint to reset the job status to 'pending' and start the job simulation.
 
