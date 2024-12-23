@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { fetchStatus, resetStatus } from "./client";
-import StatusContainer from "./StatusContainer";
+import ApproachContainer from "./components/ApproachContainer";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
   const [leftContainerState, setLeftContainerState] = useState({
     status: "pending",
     requests: 0,
     timeWasted: "N/A",
     fetchAlgorithm: "manual",
+    isFetching: false,
+    approachNum: 1,
   });
 
   const [rightContainerState, setRightContainerState] = useState({
@@ -18,14 +18,20 @@ function App() {
     requests: 0,
     timeWasted: "N/A",
     fetchAlgorithm: "manual",
+    isFetching: false,
+    approachNum: 2,
   });
 
   useEffect(() => {
-    document.body.className = darkMode ? "dark-mode" : "";
-  }, [darkMode]);
+    const spinUpServer = async () => {
+      await resetStatus();
+    };
+    spinUpServer();
+  }, []);
 
   const checkContainerState = async (containerState, setContainerState) => {
     if (containerState.fetchAlgorithm !== "manual") {
+      setContainerState((s) => ({ ...s, isFetching: true }));
       const result = await fetchStatus(containerState.fetchAlgorithm);
 
       const endTime = new Date().toISOString();
@@ -38,6 +44,7 @@ function App() {
         status: result.status,
         requests: result.requests,
         timeWasted: timeWasted,
+        isFetching: false,
       }));
     }
   };
@@ -50,6 +57,7 @@ function App() {
       status: result,
       requests: 0,
       timeWasted: "N/A",
+      isFetching: false,
     }));
 
     setRightContainerState((s) => ({
@@ -57,6 +65,7 @@ function App() {
       status: result,
       requests: 0,
       timeWasted: "N/A",
+      isFetching: false,
     }));
 
     Promise.all([
@@ -65,52 +74,56 @@ function App() {
     ]);
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+  const renderTimeWasted = (timeWasted) => {
+    return timeWasted === "N/A" ? timeWasted : `${timeWasted} ms`;
   };
 
   return (
     <div className="App">
-      <div className="dark-mode-toggle">
-        <label className="switch">
-          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      <StatusContainer
-        containerState={leftContainerState}
-        setContainerState={setLeftContainerState}
-      />
-      <div className="middle-container">
-        <table>
-          <tbody>
-            <tr>
-              <td></td>
-              <td># of Requests</td>
-              <td>Time Wasted</td>
-            </tr>
-            <tr>
-              <td>Left Approach</td>
-              <td>{leftContainerState.requests}</td>
-              <td>{leftContainerState.timeWasted} ms</td>
-            </tr>
-            <tr>
-              <td>Right Approach</td>
-              <td>{rightContainerState.requests}</td>
-              <td>{rightContainerState.timeWasted} ms</td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="button-row">
-          <button className="button translate" onClick={handleTranslate}>
-            Translate Video
-          </button>
+      <div className="client-section">
+        <ApproachContainer
+          containerState={leftContainerState}
+          setContainerState={setLeftContainerState}
+        />
+        <div className="middle-container">
+          <table>
+            <tbody>
+              <tr>
+                <td></td>
+                <td># of Requests</td>
+                <td>Time Wasted</td>
+              </tr>
+              <tr>
+                <td>Approach #1</td>
+                <td>
+                  {leftContainerState.isFetching
+                    ? "..."
+                    : leftContainerState.requests}
+                </td>
+                <td>{renderTimeWasted(leftContainerState.timeWasted)}</td>
+              </tr>
+              <tr>
+                <td>Approach #2</td>
+                <td>
+                  {rightContainerState.isFetching
+                    ? "..."
+                    : rightContainerState.requests}
+                </td>
+                <td>{renderTimeWasted(rightContainerState.timeWasted)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="button-row">
+            <button className="button translate" onClick={handleTranslate}>
+              Translate Video
+            </button>
+          </div>
         </div>
+        <ApproachContainer
+          containerState={rightContainerState}
+          setContainerState={setRightContainerState}
+        />
       </div>
-      <StatusContainer
-        containerState={rightContainerState}
-        setContainerState={setRightContainerState}
-      />
     </div>
   );
 }
