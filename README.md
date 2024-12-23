@@ -47,7 +47,7 @@ For instance, the exponentially increasing algorithm may be more suitable for ex
 
 Additionally, the client library returns extra variables along with the server status, such as the number of requests made and the completion time. This provides customers with more metrics related to their algorithm's performance on the video. From a customer's perspective, this allows them to compare an algorithm's efficiency in terms of time wasted and requests made until completion, as seen in this project's implementation of the client library.
 
-## React
+## React Implementation
 
 The React implemenation provided in this project allows the user to compare any two approaches/algorithms to translating a video. The "Translate Video" button resets the status of the server through the client library's `resetStatus()` function, and immediately calls the `fetchStatus()` function afterwards for any non-manual algorithm approaches selected from the dropdown.
 
