@@ -1,28 +1,15 @@
 /**
  * Fetches the current status from the server.
- * @returns {Promise<string>} - The current status.
- */
-export const fetchStatus = async () => {
-  try {
-    const response = await fetch("/status");
-    if (!response.ok) {
-      throw new Error(`Server error: ${response.statusText}`);
-    }
-    const data = await response.json();
-    return data.result;
-  } catch (error) {
-    console.error("Error fetching status:", error);
-    return "error";
-  }
-};
-
-/**
- * Fetch the status with exponential backoff and timeout.
  * @param {string} algorithm - The algorithm to use.
+ *
+ * @returns {Promise<{status: string, completion_time: string | null, requests: int}>}
+ * The current status, server completion time, and number of requests made for that algorithm.
  */
-export const fetchStatusWithBackoff = async (algorithm) => {
-  let delay = 1;
-  const startTime = Date.now();
+export const fetchStatus = async (algorithm) => {
+  let prevWaitPeriod = 1000;
+  let currWaitPeriod = 1000;
+  const waitLimit = 16000;
+  let requests = 0;
 
   while (true) {
     try {
@@ -31,15 +18,43 @@ export const fetchStatusWithBackoff = async (algorithm) => {
         throw new Error(`Server error: ${response.statusText}`);
       }
       const data = await response.json();
+      requests++;
 
-      // updateRequests((prev) => prev + 1);
-
-      if (data.result !== "pending") {
-        return data.result;
+      if (algorithm == "manual") {
+        return {
+          status: data.result,
+          completion_time: data.completion_time,
+          requests,
+        };
       }
 
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      delay = Math.min(delay * 2, maxDelay);
+      if (data.result !== "pending") {
+        return {
+          status: data.result,
+          completion_time: data.completion_time,
+          requests,
+        };
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, currWaitPeriod));
+
+      let tempWaitPeriod;
+
+      switch (algorithm) {
+        case "linear":
+          currWaitPeriod = 1000;
+          break;
+        case "exponential":
+          currWaitPeriod = Math.min(currWaitPeriod * 2, waitLimit);
+          break;
+        case "fibonacci":
+          tempWaitPeriod = currWaitPeriod;
+          currWaitPeriod = Math.min(currWaitPeriod + prevWaitPeriod, waitLimit);
+          prevWaitPeriod = tempWaitPeriod;
+          break;
+        default:
+          throw new Error("Invalid algorithm");
+      }
     } catch (error) {
       return error;
     }

@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "import"],
+  "rules": {
+    "semi": ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "no-constant-condition": "off",
+    "import/no-unresolved": "error",
+    "import/named": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "no-unused-vars": "off", // Disable no-unused-vars rule for TypeScript
+        "no-constant-condition": "off", // Disable no-constant-condition rule for TypeScript
+        "import/no-unresolved": "error", // Add rule to give an error for unresolved imports in TypeScript
+        "import/named": "error" // Add rule to give an error for named imports that do not exist in TypeScript
+      }
+    }
+  ]
+}
