@@ -63,8 +63,9 @@ Once the selected approach recieves a completion status message, the table is up
 ### Running the Server and React Implementation
 
 3. Assuming you have cloned the git repository locally, start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
-4. Run npm install to acquire all project dependencies.
-5. Run npm start to host the implementation locally.
+4. Run `npm install` to acquire all project dependencies.
+5. Run `npm start` to host the implementation locally.
+6. Run `npm test` to initiate the server and client library integration tests.
 
 ## Example
 
