@@ -7,8 +7,8 @@
  */
 export const fetchStatus = async (algorithm) => {
   let prevWaitPeriod = 1000;
-  let currWaitPeriod = 1000;
-  const waitLimit = 16000;
+  let currWaitPeriod = algorithm !== "exponential_dec" ? 1000 : 2000;
+  const waitLimit = 16001;
   let requests = 0;
 
   while (true) {
@@ -41,11 +41,14 @@ export const fetchStatus = async (algorithm) => {
       let tempWaitPeriod;
 
       switch (algorithm) {
-        case "linear":
+        case "constant":
           currWaitPeriod = 1000;
           break;
-        case "exponential":
+        case "exponential_inc":
           currWaitPeriod = Math.min(currWaitPeriod * 2, waitLimit);
+          break;
+        case "exponential_dec":
+          currWaitPeriod = (2 ** -requests + 1) * 1000;
           break;
         case "fibonacci":
           tempWaitPeriod = currWaitPeriod;
