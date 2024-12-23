@@ -5,6 +5,7 @@ import ApproachContainer from "./components/ApproachContainer";
 import logo from "./images/heygen_logo.svg";
 
 function App() {
+  // Single state variable with left container data
   const [leftContainerState, setLeftContainerState] = useState({
     status: "pending",
     requests: 0,
@@ -14,6 +15,7 @@ function App() {
     approachNum: 1,
   });
 
+  // Single state variable with right container data
   const [rightContainerState, setRightContainerState] = useState({
     status: "pending",
     requests: 0,
@@ -23,6 +25,7 @@ function App() {
     approachNum: 2,
   });
 
+  // Reset server status on initial load/reload
   useEffect(() => {
     const spinUpServer = async () => {
       await resetStatus();
@@ -30,6 +33,7 @@ function App() {
     spinUpServer();
   }, []);
 
+  // Helper function to call fetchStatus on containers with algorithmic approaches
   const checkContainerState = async (containerState, setContainerState) => {
     if (containerState.fetchAlgorithm !== "manual") {
       setContainerState((s) => ({ ...s, isFetching: true }));
@@ -50,6 +54,8 @@ function App() {
     }
   };
 
+  // Handle translate video button click.
+  // Resets server/client status and runs fetchStatus for algorithmic containers to update tables
   const handleTranslate = async () => {
     const result = await resetStatus();
 
@@ -82,15 +88,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* place an svg I have downloaded before this h1 tag  */}
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Translation Simulation*</h1>
       </header>
+
       <div className="client-section">
         <ApproachContainer
           containerState={leftContainerState}
           setContainerState={setLeftContainerState}
         />
+
         <div className="middle-container">
           <table>
             <tbody>
@@ -119,12 +126,14 @@ function App() {
               </tr>
             </tbody>
           </table>
+
           <div className="button-row">
             <button className="button translate" onClick={handleTranslate}>
               Translate Video
             </button>
           </div>
         </div>
+
         <ApproachContainer
           containerState={rightContainerState}
           setContainerState={setRightContainerState}
