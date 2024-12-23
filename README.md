@@ -86,3 +86,7 @@ client.resetStatus().then((status) => {
   console.log(status);
 });
 ```
+
+## Disclaimer:
+
+This is a simulation of a video translation service that is part of a take-home assignment, and is not a product/direct work of HeyGen. The translation status and time wasted are simulated and do not reflect actual data.
