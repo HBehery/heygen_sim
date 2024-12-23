@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { fetchStatus, resetStatus } from "./client";
 import ApproachContainer from "./components/ApproachContainer";
+import logo from "./images/heygen_logo.svg";
 
 function App() {
   const [leftContainerState, setLeftContainerState] = useState({
@@ -80,6 +81,11 @@ function App() {
 
   return (
     <div className="App">
+      <header className="App-header">
+        {/* place an svg I have downloaded before this h1 tag  */}
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Translation Simulation*</h1>
+      </header>
       <div className="client-section">
         <ApproachContainer
           containerState={leftContainerState}
@@ -123,6 +129,12 @@ function App() {
           containerState={rightContainerState}
           setContainerState={setRightContainerState}
         />
+      </div>
+      <div className="disclaimer">
+        *This is a simulation of a video translation service that is part of a
+        take-home assignment, and is not a product/direct work of HeyGen. The
+        translation status and time wasted are simulated and do not reflect
+        actual data.
       </div>
     </div>
   );
