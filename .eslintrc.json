@@ -40,10 +40,10 @@
       "plugins": ["@typescript-eslint"],
       "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "off",
-        "no-unused-vars": "off", // Disable no-unused-vars rule for TypeScript
-        "no-constant-condition": "off", // Disable no-constant-condition rule for TypeScript
-        "import/no-unresolved": "error", // Add rule to give an error for unresolved imports in TypeScript
-        "import/named": "error" // Add rule to give an error for named imports that do not exist in TypeScript
+        "no-unused-vars": "off",
+        "no-constant-condition": "off",
+        "import/no-unresolved": "error",
+        "import/named": "error"
       }
     }
   ]
