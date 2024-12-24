@@ -1,5 +1,5 @@
 {
-  "name": "client_library",
+  "name": "heygen-client",
   "version": "1.0.0",
   "description": "HeyGen Video Translation Simulation Client Library",
   "main": "client.js",

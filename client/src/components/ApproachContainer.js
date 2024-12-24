@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchStatus } from "client_library";
+import { fetchStatus } from "heygen-client";
 
 const ApproachContainer = ({ containerState, setContainerState }) => {
   const [isFetching, setIsFetching] = useState(false);
