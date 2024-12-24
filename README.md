@@ -58,7 +58,7 @@ Once the selected approach recieves a completion status message, the table is up
 ### Importing and Testing the Client Library (with npm as your package manager)
 
 1. Download the `client_lib` folder from the repository. This is the packaged client library which you may import and test locally.
-2. Navigate to your desired JavaScript project and run `npm install <client_lib directory>` in the terminal. This will install `"heygen_client"` as a package into your project, which you may import the `fetchStatus()` and `resetStatus()` functions from.
+2. Navigate to your desired JavaScript project and run `npm install <client_lib directory>` in the terminal. This will install `"heygen-client"` as a package into your project, which you may import the `fetchStatus()` and `resetStatus()` functions from.
 3. In order to spin up a test server and run integration tests on the client library's functions (using Jest), navigate to the root of the `client_lib` folder and run `npm test` in the terminal.
 
 Note: To allow for customers to make requests to any API through the client library, it uses relative links for its requests to the server. As a result, defining an environment variable or proxy link in your codebase to redirect outgoing requests to a different API can be done.
@@ -73,7 +73,7 @@ Note: To allow for customers to make requests to any API through the client libr
 
 ```javascript
 // Example usage of the client library in JavaScript/React
-import { fetchStatus, resetStatus } from "heygen_client";
+import { fetchStatus, resetStatus } from "heygen-client";
 
 fetchStatus("constant").then((status) => {
   console.log(status);
