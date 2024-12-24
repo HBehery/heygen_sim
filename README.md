@@ -60,7 +60,7 @@ Once the selected approach recieves a completion status message, the table is up
 1. Download the `client.js` file from the repository.
 2. Import the `client.js` file into any JavaScript project in order to utilize the client library functions. Ensure that the `node-fetch` is installed (`npm install node-fetch`)
 
-Note: To allow for customers to make requests to any API through the client library, it uses relative links throughout its requests to the server. As a result, defining an environment variable or proxy link in your codebase to redirect outgoing requests to a different API can be done.
+Note: To allow for customers to make requests to any API through the client library, it uses relative links for its requests to the server. As a result, defining an environment variable or proxy link in your codebase to redirect outgoing requests to a different API can be done.
 
 ### Running the Server and React Implementation
 
