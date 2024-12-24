@@ -4,7 +4,7 @@
 
 This project is a simulation for HeyGen, designed to demonstrate the functionality of a video translation server by using a configurable random delay. The client library (JavaScript) provides functions to interact with the server (Python + Flask), which processes and responds to client requests. The frontend (React) provided in this project provides a unique implementation of the client library (see "Frontend" section below).
 
-## Client Library Functions (`client.js`)
+## Client Library Functions (`./client_lib/client.js`)
 
 The client library includes the following functions:
 
@@ -18,7 +18,7 @@ The client library includes the following functions:
 
 - `resetStatus()`: Resets the server (i.e. simulates a new video translation) and returns the pending translation status to the client.
 
-## Server Functions (`server.py`)
+## Server Functions (`./client_lib/server.py`)
 
 The server includes the following functions:
 
@@ -55,23 +55,20 @@ Once the selected approach recieves a completion status message, the table is up
 
 ## Usage
 
-### Only Importing the Client Library
+### Importing and Testing the Client Library (with npm as your package manager)
 
-1. Download the `client.js` file from the repository.
-2. Import the `client.js` file into any JavaScript project in order to utilize the client library functions. Ensure that the `node-fetch` is installed (`npm install node-fetch`)
+1. Download the `client_lib` folder from the repository. This is the packaged client library which you may import and test locally.
+2. Navigate to your desired JavaScript project and run `npm install --save <client_lib directory>` in the terminal. This will install `"client-library"` as a package into your project, which you may import the `fetchStatus()` and `resetStatus()` functions from.
+3. In order to spin up a test server and run integration tests on the client library's functions (using Jest), navigate to the root of the `client_lib` folder and run `npm test` in the terminal.
 
 Note: To allow for customers to make requests to any API through the client library, it uses relative links for its requests to the server. As a result, defining an environment variable or proxy link in your codebase to redirect outgoing requests to a different API can be done.
 
 ### Running the Server and React Implementation
 
-1. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
-2. Run `npm install` to acquire all project dependencies.
-3. Run `npm start` to host the implementation locally.
-4. Run `npm test` to initiate the server and client library integration tests.
-5. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
-6. Run `npm install` to acquire all project dependencies.
-7. Run `npm start` to host the implementation locally.
-8. Run `npm test` to initiate the server and client library integration tests.
+1. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `/server/server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
+2. Navigate to the `client` project directory
+3. Run `npm install` to acquire all project dependencies and `npm start` afterwards to compile the implementation locally.
+5. Running `npm test` in this directory will also spin up the server run the client library integration tests.
 
 ## Example
 
