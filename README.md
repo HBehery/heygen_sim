@@ -71,22 +71,15 @@ Note: To allow for customers to make requests to any API through the client libr
 
 ## Example
 
-```python
-# Example server implementation in Python
-if __name__ == '__main__':
-    threading.Thread(target=simulate_job).start()
-    app.run(debug=True, port=5000)
-```
-
 ```javascript
-// Example usage of the client library in JavaScript
-const client = require("./src/client");
+// Example usage of the client library in JavaScript/React
+import { fetchStatus, resetStatus } from "heygen_client";
 
-client.fetchStatus("constant").then((status) => {
+fetchStatus("constant").then((status) => {
   console.log(status);
 });
 
-client.resetStatus().then((status) => {
+resetStatus().then((status) => {
   console.log(status);
 });
 ```
