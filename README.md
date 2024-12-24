@@ -68,6 +68,10 @@ Note: To allow for customers to make requests to any API through the client libr
 2. Run `npm install` to acquire all project dependencies.
 3. Run `npm start` to host the implementation locally.
 4. Run `npm test` to initiate the server and client library integration tests.
+5. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
+6. Run `npm install` to acquire all project dependencies.
+7. Run `npm start` to host the implementation locally.
+8. Run `npm test` to initiate the server and client library integration tests.
 
 ## Example
 
