@@ -5,7 +5,20 @@
  * @returns {Promise<{status: string, completion_time: string | null, requests: int}>}
  * The current status, server completion time, and number of requests made for that algorithm.
  */
-export const fetchStatus = async (algorithm) => {
+const fetchStatus = async (algorithm) => {
+  // Check if algorithm is valid before making a request
+  if (
+    ![
+      "manual",
+      "constant",
+      "exponential_inc",
+      "exponential_dec",
+      "fibonacci",
+    ].includes(algorithm)
+  ) {
+    throw new Error("Invalid algorithm");
+  }
+
   let prevWaitPeriod = 1000;
   let currWaitPeriod = algorithm !== "exponential_dec" ? 1000 : 2000;
   const waitLimit = 16001;
@@ -68,7 +81,7 @@ export const fetchStatus = async (algorithm) => {
  * Reset the server status to pending.
  * @returns {Promise<string>} The new status.
  */
-export const resetStatus = async () => {
+const resetStatus = async () => {
   try {
     const response = await fetch("/reset", { method: "POST" });
     if (!response.ok) {
@@ -81,3 +94,5 @@ export const resetStatus = async () => {
     return "error";
   }
 };
+
+module.exports = { fetchStatus, resetStatus };
