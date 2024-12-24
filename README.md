@@ -68,7 +68,6 @@ Note: To allow for customers to make requests to any API through the client libr
 1. Clone the git repository into your desired IDE via `git clone {url}` and start the server by running `/server/server.py`. Ensure that the Python `flask` library is installed before running the server (such as by installing it through pip: `Python pip install flask`).
 2. Navigate to the `client` project directory
 3. Run `npm install` to acquire all project dependencies and `npm start` afterwards to compile the implementation locally.
-5. Running `npm test` in this directory will also spin up the server run the client library integration tests.
 
 ## Example
 
