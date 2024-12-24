@@ -76,7 +76,7 @@ body {
   max-width: 350px;
   min-width: 300px;
   height: 60%;
-  min-height: 350px;
+  min-height: 361px;
   background-color: #e2dde6;
   border-radius: 22px;
   margin: 10px;
@@ -91,7 +91,7 @@ body {
   align-items: center;
   width: 97%;
   height: 97%;
-  min-height: 350px;
+  min-height: 361px;
   background-color: #ffffff;
   border-radius: 14px;
 }
