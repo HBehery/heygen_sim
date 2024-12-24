@@ -1,4 +1,4 @@
-const { fetchStatus, resetStatus } = require("./client");
+const { fetchStatus, resetStatus } = require("../client.js");
 const { exec } = require("child_process");
 const path = require("path");
 const fetch = require("node-fetch");
@@ -9,7 +9,7 @@ jest.setTimeout(15000);
 
 beforeAll((done) => {
   // Spin up the server by executing server.py script
-  const serverScriptPath = path.join(__dirname, "./server.py");
+  const serverScriptPath = path.join(__dirname, "./test_server.py");
   serverProcess = exec(`python "${serverScriptPath}"`);
 
   // Wait a few seconds to ensure the server is up and running

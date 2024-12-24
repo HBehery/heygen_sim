@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchStatus } from "../client";
+import { fetchStatus } from "client_library";
 
 const ApproachContainer = ({ containerState, setContainerState }) => {
   const [isFetching, setIsFetching] = useState(false);

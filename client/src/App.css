@@ -73,8 +73,10 @@ body {
   justify-content: center;
   align-items: center;
   width: 25%;
+  max-width: 350px;
   min-width: 300px;
   height: 60%;
+  min-height: 350px;
   background-color: #e2dde6;
   border-radius: 22px;
   margin: 10px;
@@ -89,6 +91,7 @@ body {
   align-items: center;
   width: 97%;
   height: 97%;
+  min-height: 350px;
   background-color: #ffffff;
   border-radius: 14px;
 }

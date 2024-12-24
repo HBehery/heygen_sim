@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { fetchStatus, resetStatus } from "./client";
+import { fetchStatus, resetStatus } from "client_library";
 import ApproachContainer from "./components/ApproachContainer";
 import logo from "./images/heygen_logo.svg";
 

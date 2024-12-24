@@ -1,0 +1,22 @@
+{
+  "name": "client_library",
+  "version": "1.0.0",
+  "description": "HeyGen Video Translation Simulation Client Library",
+  "main": "client.js",
+  "scripts": {
+    "test": "npx jest ./tests/client.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HBehery/heygen_sim.git"
+  },
+  "author": "Hamzah Behery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HBehery/heygen_sim/issues"
+  },
+  "homepage": "https://github.com/HBehery/heygen_sim#readme",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
