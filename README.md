@@ -18,7 +18,7 @@ The client library includes the following functions:
 
 - `resetStatus()`: Resets the server (i.e. simulates a new video translation) and returns the pending translation status to the client.
 
-## Server Functions (`./client_lib/server.py`)
+## Server Functions (`./server/server.py`)
 
 The server includes the following functions:
 
