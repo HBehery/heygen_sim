@@ -4,6 +4,8 @@
 
 This project is a simulation for HeyGen, designed to demonstrate the functionality of a video translation server by using a configurable random delay. The client library (JavaScript) provides functions to interact with the server (Python + Flask), which processes and responds to client requests. The frontend (React) provided in this project provides a unique implementation of the client library (see "Frontend" section below).
 
+![Preview Image:](client/public/preview_image.png)
+
 ## Client Library Functions (`./client_lib/client.js`)
 
 The client library includes the following functions:
